@@ -3,6 +3,7 @@
 # throughout this file
 import pygame
 from constants import *
+from player import Player
 
 def main():
 	pygame.init()
@@ -10,13 +11,16 @@ def main():
 	pygame.display.set_caption("Asteroids Game")
 	pygame.time.Clock()
 	dt = 0
+	player = Player(SCREEN_WIDTH /2, SCREEN_HEIGHT / 2)
 	running = True
 	while running:
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				running= False
+		player.rotate(dt)
 		screen.fill((0, 0, 0))
 		pygame.display.flip()
+		player.draw(screen)
 	pygame.time.Clock.tick(60)
 	dt = pygame.time.Clock.tick(60) / 1000
 	pygame.quit()
